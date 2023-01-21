@@ -1,9 +1,10 @@
 import React from 'react'
+import Chatbox from '../components/Chatbox'
 
 function Jsbot() {
   return (
     <div className='container mt-5'>
-      <h1 className='text-light text-center'>Coming Soon</h1>
+      <Chatbox/>
     </div>
   )
 }
