@@ -75,12 +75,13 @@ function Chatbox() {
           type="text"
           style={{
             height: "50px",
-            width: "800px",
+            width: "270px",
             borderRadius: "10px",
             marginRight: "5px",
           }}
           onChange={(e) => setMessage(e.target.value)}
         />
+        
         <button className="btn btn-primary" onClick={sendMessage}>
           Send
         </button>
