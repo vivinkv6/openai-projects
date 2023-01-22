@@ -50,8 +50,13 @@ function NavBar() {
               </NavDropdown.Item>
 
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+              <NavDropdown.Item href="/ask">
+              <Link
+                  to="/ask"
+                  className="text-dark text-decoration-none"
+                >
+                  Ask Anything
+                </Link>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

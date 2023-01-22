@@ -1,0 +1,61 @@
+import React, { useState } from "react";
+import { Configuration, OpenAIApi } from "openai";
+function Asking() {
+  const [content, setContent] = useState("");
+  const [createContent, setCreateContent] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const configuration = new Configuration({
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+  });
+  const openai = new OpenAIApi(configuration);
+
+  const generateContent = async () => {
+    setCreateContent("");
+    setLoading(true);
+
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: content,
+      temperature: 0.3,
+      max_tokens: 150,
+      top_p: 1.0,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
+    });
+    setCreateContent(response.data.choices[0].text);
+    setLoading(false);
+  };
+
+  return (
+    <>
+      {loading ? <h4 className="text-light">Content Creating</h4> : <></>}
+      {createContent.length > 0 ? (
+        <>
+          <p className="text-light">{createContent}</p>
+        </>
+      ) : (
+        <></>
+      )}
+
+      <div style={{ position: "fixed", bottom: "5px" }}>
+        <input
+          type="text"
+          style={{
+            height: "50px",
+            width: "270px",
+            borderRadius: "10px",
+            marginRight: "5px",
+          }}
+          onChange={(e) => setContent(e.target.value)}
+        />
+
+        <button className="btn btn-primary" onClick={generateContent}>
+          Send
+        </button>
+      </div>
+    </>
+  );
+}
+
+export default Asking;

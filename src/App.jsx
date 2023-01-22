@@ -7,6 +7,7 @@ import Jsbot from "./pages/Jsbot";
 import Sql from "./pages/Sql";
 import Complexity from "./pages/Complexity";
 import AIchat from "./pages/AIchat";
+import Ask from "./pages/Ask";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/sql" element={<Sql />} />
         <Route path="/complexity" element={<Complexity />} />
         <Route path="/aichat" element={<AIchat />} />
+        <Route path="/ask" element={<Ask />} />
       </Routes>
     </BrowserRouter>
   );
