@@ -40,6 +40,14 @@ function NavBar() {
                   Measure Complexity
                 </Link>
               </NavDropdown.Item>
+              <NavDropdown.Item href="/aichat">
+                <Link
+                  to="/aichat"
+                  className="text-dark text-decoration-none"
+                >
+                  AI Tutor
+                </Link>
+              </NavDropdown.Item>
 
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
