@@ -22,8 +22,25 @@ function NavBar() {
                   Image Generator
                 </Link>
               </NavDropdown.Item>
-              <NavDropdown.Item href="/jsbot"><Link to='/jsbot' className="text-dark text-decoration-none">JavaScript Bot</Link></NavDropdown.Item>
-              <NavDropdown.Item href="/sql"><Link to='/sql' className="text-dark text-decoration-none">SQL Translator</Link></NavDropdown.Item>
+              <NavDropdown.Item href="/jsbot">
+                <Link to="/jsbot" className="text-dark text-decoration-none">
+                  JavaScript Bot
+                </Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/sql">
+                <Link to="/sql" className="text-dark text-decoration-none">
+                  SQL Translator
+                </Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/complexity">
+                <Link
+                  to="/complexity"
+                  className="text-dark text-decoration-none"
+                >
+                  Measure Complexity
+                </Link>
+              </NavDropdown.Item>
+
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
                 Separated link
