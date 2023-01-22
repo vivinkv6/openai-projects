@@ -36,8 +36,8 @@ function GeneratingCode() {
         <div className="col-md-12">
           <center>
             <textarea
-              cols="40"
-              rows="10"
+              cols="30"
+              rows="15"
               onChange={(e) => setWords(e.target.value)}
             ></textarea>
           </center>
