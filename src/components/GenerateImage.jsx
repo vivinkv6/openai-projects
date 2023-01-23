@@ -70,7 +70,7 @@ function GenerateImage() {
           <></>
         )}
         {image.length > 0 ? (
-          <img src={image} height={400} width={380} alt="Not Found" />
+          <img src={image} height={400} width={360} alt="Not Found" />
         ) : (
           <></>
         )}
