@@ -30,5 +30,5 @@ An "ask anything" web app is a type of application that allows users to ask ques
 
 ## Measuring Complexity
 
-A "complexity measuring" web app is a type of application that uses algorithms to analyze and quantify the complexity of a given text or code. The app would be trained on a set of texts or codes that have been labeled as having different levels of complexity, and then use that training to measure the complexity of new texts or codes.
+A "complexity measuring" web app is a type of application that uses algorithms to analyze and quantify the complexity of a given text or code.
 
