@@ -17,7 +17,7 @@ function GeneratingCode() {
     setCode("");
     setLoading(true);
     const response = await openai.createCompletion({
-      model: "code-davinci-002",
+      model: "code-davinci-003",
       prompt: words,
       temperature: 0,
       max_tokens: 3500,
