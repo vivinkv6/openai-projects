@@ -18,7 +18,7 @@ function Asking() {
       model: "text-davinci-003",
       prompt: content,
       temperature: 0.3,
-      max_tokens: 150,
+      max_tokens: 3500,
       top_p: 1.0,
       frequency_penalty: 0.0,
       presence_penalty: 0.0,
@@ -29,7 +29,7 @@ function Asking() {
 
   return (
     <>
-      {loading ? <h4 className="text-light">Content Creating</h4> : <></>}
+      {loading ? <h4 className="text-light text-center mt-5">Loading</h4> : <></>}
       {createContent.length > 0 ? (
         <>
           <p className="text-light">{createContent}</p>

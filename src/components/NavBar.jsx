@@ -8,7 +8,7 @@ function NavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="secondary" variant="dark">
       <Container>
-        <Navbar.Brand href="/">
+        <Navbar.Brand >
           <Link to="/" className="text-decoration-none text-light">
             <h2>OpenAI</h2>
           </Link>
@@ -17,22 +17,22 @@ function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
             <NavDropdown title="AI Generators" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/">
+              <NavDropdown.Item >
                 <Link to="/" className="text-dark text-decoration-none">
                   Image Generator
                 </Link>
               </NavDropdown.Item>
-              <NavDropdown.Item href="/jsbot">
+              <NavDropdown.Item >
                 <Link to="/jsbot" className="text-dark text-decoration-none">
                   JavaScript Bot
                 </Link>
               </NavDropdown.Item>
-              <NavDropdown.Item href="/sql">
+              <NavDropdown.Item >
                 <Link to="/sql" className="text-dark text-decoration-none">
                   SQL Translator
                 </Link>
               </NavDropdown.Item>
-              <NavDropdown.Item href="/complexity">
+              <NavDropdown.Item >
                 <Link
                   to="/complexity"
                   className="text-dark text-decoration-none"
@@ -40,7 +40,7 @@ function NavBar() {
                   Measure Complexity
                 </Link>
               </NavDropdown.Item>
-              <NavDropdown.Item href="/aichat">
+              <NavDropdown.Item>
                 <Link
                   to="/aichat"
                   className="text-dark text-decoration-none"
@@ -50,7 +50,7 @@ function NavBar() {
               </NavDropdown.Item>
 
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/ask">
+              <NavDropdown.Item>
               <Link
                   to="/ask"
                   className="text-dark text-decoration-none"

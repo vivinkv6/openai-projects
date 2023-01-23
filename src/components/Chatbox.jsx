@@ -21,7 +21,7 @@ function Chatbox() {
       model: "code-davinci-002",
       prompt:`You: ${message}`,
       temperature: 0,
-      max_tokens: 60,
+      max_tokens: 3500,
       top_p: 1.0,
       frequency_penalty: 0.5,
       presence_penalty: 0.0,

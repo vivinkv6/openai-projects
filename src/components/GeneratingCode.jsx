@@ -20,7 +20,7 @@ function GeneratingCode() {
       model: "code-davinci-002",
       prompt: words,
       temperature: 0,
-      max_tokens: 150,
+      max_tokens: 3500,
       top_p: 1.0,
       frequency_penalty: 0.0,
       presence_penalty: 0.0,
@@ -34,6 +34,7 @@ function GeneratingCode() {
   return (
    
         <div className="col-md-12">
+          
           <center>
             <textarea
               cols="30"
@@ -58,7 +59,7 @@ function GeneratingCode() {
             
           )}
           {code.length>0 ?<center>
-                <textarea className="mt-5" cols="40" rows="10" value={code}></textarea>
+                <textarea className="mt-5" cols="30" rows="15" value={code}></textarea>
               </center> : <></>}
           
         </div>
