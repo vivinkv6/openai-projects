@@ -31,9 +31,10 @@ function Asking() {
     <>
       {loading ? <h4 className="text-light text-center mt-5">Loading</h4> : <></>}
       {createContent.length > 0 ? (
-        <>
-          <p className="text-light">{createContent}</p>
-        </>
+        <center>
+          
+          <textarea className="text-light border-none mt-5 bg-dark lg" rows="15" cols="32" value={createContent}></textarea>
+        </center>
       ) : (
         <></>
       )}
