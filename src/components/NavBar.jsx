@@ -48,6 +48,14 @@ function NavBar() {
                   AI Tutor
                 </Link>
               </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link
+                  to="/bugfixer"
+                  className="text-dark text-decoration-none"
+                >
+                  Bug Fixer
+                </Link>
+              </NavDropdown.Item>
 
               <NavDropdown.Divider />
               <NavDropdown.Item>

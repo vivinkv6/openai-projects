@@ -32,3 +32,7 @@ An "ask anything" web app is a type of application that allows users to ask ques
 
 A "complexity measuring" web app is a type of application that uses algorithms to analyze and quantify the complexity of a given text or code.
 
+## Bug Fixer
+
+AI bug fixers are computer programs designed to automatically detect and fix software bugs. These programs use artificial intelligence (AI) algorithms to analyze code and identify errors, and then automatically fix them.
+

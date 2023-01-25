@@ -8,6 +8,7 @@ import Sql from "./pages/Sql";
 import Complexity from "./pages/Complexity";
 import AIchat from "./pages/AIchat";
 import Ask from "./pages/Ask";
+import BugFixer from "./pages/BugFixer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/complexity" element={<Complexity />} />
         <Route path="/aichat" element={<AIchat />} />
         <Route path="/ask" element={<Ask />} />
+        <Route path="/bugfixer" element={<BugFixer />} />
       </Routes>
     </BrowserRouter>
   );
