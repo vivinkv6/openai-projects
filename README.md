@@ -36,3 +36,7 @@ A "complexity measuring" web app is a type of application that uses algorithms t
 
 AI bug fixers are computer programs designed to automatically detect and fix software bugs. These programs use artificial intelligence (AI) algorithms to analyze code and identify errors, and then automatically fix them.
 
+## Q&A
+
+It uses AI algorithms to automatically generate answers to questions in natural language text.
+
