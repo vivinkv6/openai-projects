@@ -12,6 +12,7 @@ function GenerateImage() {
   });
   const openai = new OpenAIApi(configuration);
   const generateImage = async () => {
+    setImage("");
     setLoading(true);
     const response = await openai.createImage({
       prompt: imgGenerate,
