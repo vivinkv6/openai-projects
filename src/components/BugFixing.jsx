@@ -3,7 +3,8 @@ import { Configuration, OpenAIApi } from "openai";
 
 function BugFixing() {
 
-    const [words, setWords] = useState("");
+    const [words, setWords] = useState(`##### Fix bugs in the below function\n
+    ### Buggy 'language' \n\n Paste Source Code Here \n\n\n ### Fixed 'language'`);
     const [code, setCode] = useState("");
     const [loading, setLoading] = useState(false);
   
@@ -36,6 +37,7 @@ function BugFixing() {
       <textarea
         cols="30"
         rows="15"
+        value={words}
         onChange={(e) => setWords(e.target.value)}
       ></textarea>
     </center>

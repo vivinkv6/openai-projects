@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 
 function Answer() {
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState("Enter your question Here...\n\n\nThe answer is");
   const [loading, setLoading] = useState(false);
   const [answer, setAnswer] = useState("");
 
@@ -33,6 +33,7 @@ function Answer() {
         <textarea
           cols="30"
           rows="15"
+          value={code}
           onChange={(e) => setCode(e.target.value)}
         ></textarea>
       </center>
