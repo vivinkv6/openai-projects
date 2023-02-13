@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 
 function MeasureComplexity() {
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState("\nPaste Source code Here\n\n\nThe time complexity is");
   const [complexity, setComplexity] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -32,6 +32,7 @@ function MeasureComplexity() {
     <div className="col-md-12">
       <center>
         <textarea
+        value={code}
           cols="30"
           rows="15"
           onChange={(e) => setCode(e.target.value)}
