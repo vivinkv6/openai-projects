@@ -1,30 +1,30 @@
 import React, { useState } from "react";
-import { Configuration, OpenAIApi } from "openai";
+
 
 function GeneratingCode() {
-  const [words, setWords] = useState("");
+  const [prompt, setPrompt] = useState("");
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const configuration = new Configuration({
-    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-  });
 
-  const openai = new OpenAIApi(configuration);
 
   const generateCode = async () => {
     setCode("");
     setLoading(true);
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: words,
-      temperature: 0.3,
-      max_tokens: 3500,
-      top_p: 1.0,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
-    });
-    setCode(response.data.choices[0].text);
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}sql`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ prompt }),
+      })
+        .then((res) => res.json())
+        .then((data) => setCode(data));
+    } catch (error) {
+      console.log(error);
+    }
+
     setLoading(false);
   };
 
@@ -34,7 +34,7 @@ function GeneratingCode() {
         <textarea
           cols="30"
           rows="15"
-          onChange={(e) => setWords(e.target.value)}
+          onChange={(e) => setPrompt(e.target.value)}
         ></textarea>
       </center>
       <center>
