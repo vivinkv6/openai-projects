@@ -1,44 +1,47 @@
-import React from 'react'
-import { Configuration, OpenAIApi } from "openai";
+import React from "react";
+
 import { useState } from "react";
 function AIChatting() {
-    const [user, setUser] = useState("");
-  const [message, setMessage] = useState("");
-  const [bot, setBot] = useState("");
+  const [user, setUser] = useState("");
+  const [prompt, setPrompt] = useState("");
+  const [bot, setBot] = useState({
+    role:"",
+    content:""
+  });
   const [loading, setLoading] = useState(false);
 
-    const configuration = new Configuration({
-        apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-      });
-      const openai = new OpenAIApi(configuration);
 
-      const sendMessage = async () => {
-        setUser(message);
-        setLoading(true);
-        const response = await openai.createCompletion({
-            model: "text-davinci-003",
-            prompt: `ML Tutor: ${message}`,
-            temperature: 0.3,
-            max_tokens: 3800,
-            top_p: 1.0,
-            frequency_penalty: 0.5,
-            presence_penalty: 0.0,
-            stop: ["You:"],
-          });
-        setBot(response.data.choices[0].text);
-        setLoading(false);
-      };
-    
 
+  const sendMessage = async () => {
+    setUser(prompt);
+    setLoading(true);
+   
+    try{
+      const response= await fetch(`${process.env.REACT_APP_BACKEND_URL}aichat`,{
+        method:'POST',
+        headers:{
+          'content-type':'application/json'
+        },
+        body:JSON.stringify({prompt})
+      }).then(res=>res.json()).then(data=>setBot({
+        role:data.role,
+        content:data.content
+      }))
       
-
+    }
+    catch(err){
+      
+      console.log(err);
+    }
+    setLoading(false);
+    // setBot(response.data.choices[0].text);
+    
+  };
 
   return (
     <>
-     
-
       <h4 className="bot " style={{ color: "white", marginTop: "15px" }}>
-       AI: How can i help you?
+        AI: How can i help you?
       </h4>
       {user.length > 0 && (
         <>
@@ -49,9 +52,9 @@ function AIChatting() {
             YOU: {user}
           </h4>
           <br />
-          {loading ? 
-            <h5 style={{ color: "white"}}>AI is typing</h5>
-           : 
+          {loading ? (
+            <h5 style={{ color: "white" }}>AI is typing</h5>
+          ) : (
             <h4
               className="bot "
               style={{
@@ -60,9 +63,9 @@ function AIChatting() {
                 marginBottom: "90px",
               }}
             >
-              AI: {bot}
+              {bot.role}: {bot.content}
             </h4>
-          }
+          )}
 
           <br />
         </>
@@ -70,6 +73,7 @@ function AIChatting() {
 
       <div style={{ position: "fixed", bottom: "5px" }}>
         <input
+          value={prompt}
           type="text"
           style={{
             height: "50px",
@@ -77,15 +81,15 @@ function AIChatting() {
             borderRadius: "10px",
             marginRight: "5px",
           }}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={(e) => setPrompt(e.target.value)}
         />
-        
+
         <button className="btn btn-primary" onClick={sendMessage}>
           Send
         </button>
       </div>
     </>
-  )
+  );
 }
 
-export default AIChatting
+export default AIChatting;

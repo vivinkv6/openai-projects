@@ -10,26 +10,26 @@ function Chatbox() {
   });
   const openai = new OpenAIApi(configuration);
   const [user, setUser] = useState("");
-  const [message, setMessage] = useState("");
+  const [prompt, setPrompt] = useState("");
   const [bot, setBot] = useState("");
   const [loading, setLoading] = useState(false);
 
   const sendMessage = async () => {
-    setUser(message);
+    setUser(prompt);
     setLoading(true);
-    const response = await openai.createCompletion({
-      model: "code-davinci-002",
-      prompt:`You: ${message}`,
-      temperature: 0,
-      max_tokens: 3500,
-      top_p: 1.0,
-      frequency_penalty: 0.5,
-      presence_penalty: 0.0,
-      stop: ["You:"],
-    });
-    console.log(response.data.choices[0].text);
-
-    setBot(response.data.choices[0].text);
+   try {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}bugfixer`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ prompt }),
+    })
+      .then((res) => res.json())
+      .then((data) => setBot(data));
+   } catch (error) {
+    console.log(error);
+   }
     setLoading(false);
   };
 
@@ -79,7 +79,7 @@ function Chatbox() {
             borderRadius: "10px",
             marginRight: "5px",
           }}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={(e) => setPrompt(e.target.value)}
         />
         
         <button className="btn btn-primary" onClick={sendMessage}>

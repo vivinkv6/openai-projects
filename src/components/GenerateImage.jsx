@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import Spinner from "react-bootstrap/Spinner";
 function GenerateImage() {
-  const [imgGenerate, setImgGenerate] = useState("");
+  const [prompt, setPrompt] = useState("");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -14,13 +14,19 @@ function GenerateImage() {
   const generateImage = async () => {
     setImage("");
     setLoading(true);
-    const response = await openai.createImage({
-      prompt: imgGenerate,
-      n: 1,
-      size: "1024x1024",
-    });
-
-    setImage(response.data.data[0].url);
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}img`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ prompt }),
+      })
+        .then((res) => res.json())
+        .then((data) => setImage(data));
+    } catch (error) {
+      console.log(error);
+    }
     setLoading(false);
   };
 
@@ -48,7 +54,7 @@ function GenerateImage() {
           <input
             type="text"
             placeholder="Search Image"
-            onChange={(e) => setImgGenerate(e.target.value)}
+            onChange={(e) => setPrompt(e.target.value)}
             style={{
               borderRadius: "10px",
               height: "50px",

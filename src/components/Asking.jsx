@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 function Asking() {
-  const [content, setContent] = useState("");
+  const [prompt, setPrompt] = useState("");
   const [createContent, setCreateContent] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -14,26 +14,37 @@ function Asking() {
     setCreateContent("");
     setLoading(true);
 
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: content,
-      temperature: 0.3,
-      max_tokens: 3500,
-      top_p: 1.0,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
-    });
-    setCreateContent(response.data.choices[0].text);
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}quiz`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ prompt }),
+      })
+        .then((res) => res.json())
+        .then((data) => setCreateContent(data));
+    } catch (err) {
+      console.log(err);
+    }
     setLoading(false);
   };
 
   return (
     <>
-      {loading ? <h4 className="text-light text-center mt-5">Loading</h4> : <></>}
+      {loading ? (
+        <h4 className="text-light text-center mt-5">Loading</h4>
+      ) : (
+        <></>
+      )}
       {createContent.length > 0 ? (
         <center>
-          
-          <textarea className="text-light border-none mt-5 bg-dark lg" rows="15" cols="32" value={createContent}></textarea>
+          <textarea
+            className="text-light border-none mt-5 bg-dark lg"
+            rows="15"
+            cols="32"
+            value={createContent}
+          ></textarea>
         </center>
       ) : (
         <></>
@@ -41,6 +52,7 @@ function Asking() {
 
       <div style={{ position: "fixed", bottom: "5px" }}>
         <input
+          value={prompt}
           type="text"
           style={{
             height: "50px",
@@ -48,7 +60,7 @@ function Asking() {
             borderRadius: "10px",
             marginRight: "5px",
           }}
-          onChange={(e) => setContent(e.target.value)}
+          onChange={(e) => setPrompt(e.target.value)}
         />
 
         <button className="btn btn-primary" onClick={generateContent}>
